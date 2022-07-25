@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+                
+  <title>Val</title>
+  
+ <style>
+   @import url("https://fonts.googleapis.com/css2?family=Frijole&display=swap");
+   @import url('https://fonts.googleapis.com/css2?family=Turret+Road:wght@700&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+   
+*{
+  box-sizing:border-box;
+  padding:0;
+  margin:0;
+  scale: ;
+}
+
+   nav{
+     display: flex;
+     background-color: #000000;
+     height: 10vh;
+     width: 100vw;
+   }
+
+   #logo{
+     height: auto;
+     width: auto;
+     position: relative;
+   }
+
+   #title{
+     text-align: center;
+     color: white; 
+     font-family: Roboto;
+   
+   }
+   
+    body{
+      color:black;
+      background: rgb(2,0,36);
+      background: linear-gradient(90deg, rgba(2,0,36,1) 0%,                 rgba(121,9,9,1) 100%);
+      overflow-x: hidden; 
+      justify-content: center;
+    }
+   
+    .container{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .card{
+          box-sizing: border-box;
+      background: rgb(52,231,241);
+      background: linear-gradient(90deg, rgba(52,231,241,1) 0%,rgba(226,153,188,1) 36%, rgba(52,231,241,1)       100%);
+      margin:10px;
+      height:850px;
+      width:580px;
+      box-shadow: -14px 10px 14px -2px rgba(238,174,202,0.35);
+      border-radius:15px;
+      flex-grow: 4;
+      flex-wrap:wrap;
+      
+      
+    }
+   
+    .pic{
+      background: rgb(241,219,155);
+      background: radial-gradient(circle, rgba(241,219,155,1) 0%,           rgba(226,153,188,1) 100%);
+      box-shadow: 10px 10px 15px 0px rgba(0,0,0,0.75);
+      height:325px ;
+      width:325px;
+      margin-bottom:15px;
+      justify-content:center;
+      border-top-left-radius: 15px;
+      float: left;
+      border-right: 2px solid black;
+      border-bottom: 2px solid black;
+      border-bottom-right-radius: 15px;
+    }
+   
+    .name{
+      font-family: 'Turret Road';
+      text-decoration: overline;
+      text-align: center;
+      color: black;
+      font-weight: 400;
+      width:350px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+   
+    .card p{
+      padding:10px;
+      font-family: 'Turret Road';
+      font-size: 14px;
+      text-align: left;
+      color: black;
+      font-weight: 400;
+      width: 310px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      flex-wrap:wrap
+    }
+
+   nav ul{
+     display: flex;
+   }
+
+   nav ul li a{
+     position: relative;
+     top: 30px;
+     color: white;
+     font-family: "Roboto";
+     font-size: 20px;
+     font-weight: 500;
+     text-align: center;
+     text-decoration: none;
+     padding-left: 5px;
+     padding-right: 5px;
+     margin-left: 10px;
+     margin-right: 10px;
+   }
+
+   .abil{
+     font-family: "Turret Road";
+     font-weight: 500;
+     margin-left: 120px;
+     background: #cd4545;
+     margin-top: 20px;
+     padding: 10px;
+     border: 2px solid black;
+     border-radius: 10px;
+     text-decoration: none;
+   }
+
+  
+   .abimg{
+    height: 30px;
+  }
+   .div1{
+      width:50%;
+      float: left;
+     flex-wrap:wrap;
+     padding-right: 5px;
+    }
+    .div2{
+      
+      width:50%;
+      float: right;
+      flex-wrap:wrap;
+      padding-left: 25px;
+      margin: 0;
+      overflow-:scroll;
+      text-align: left;
+      text-align-last: auto;
+    }
+   ul{
+      list-style-type: none;
+   }
+  </style>
+</head>
+
+<body>
+ <nav> 
+    <img id= "logo" src= "valorant_logo-removebg-preview.png" alt="Logo">
+   <span>
+      <ul>
+        <li> <a href="index.html" style="text-decoration: none; cursor: pointer;">AGENTS</a></li>
+        
+    
+      </ul>
+   </span>
+  </nav>
+<!--   main cards -->
+  <main>
+    <section class="container" id="result"> </section>
+  </main>
+
+  <script>
+    
+    //js for containers
+  async function drawCard(records){
+      let html='';
+      let result = document.querySelector('#result');
+      for(let rec of records){
+        if (rec.isPlayableCharacter == true)
+        html+=`
+        <div class="card" >
+        <div class="div1">
+        <img class="pic" src="${rec.fullPortraitV2}">
+        <h2 class="name">${rec.displayName}</h2>
+        <p>${rec.description}</p>
+        </div>
+        <div class="div2">
+        <ul >
+    <li><h3>${rec.abilities[0].displayName}</h3>
+      <img class="abimg" src="${rec.abilities[0].displayIcon}">
+      <p>${rec.abilities[0].description}</p></li>
+    <li><h3>${rec.abilities[1].displayName}</h3>
+      <img class="abimg" src="${rec.abilities[1].displayIcon}">
+      <p>${rec.abilities[0].description}</p></li>
+    <li><h3>${rec.abilities[2].displayName}</h3>
+      <img class="abimg" src="${rec.abilities[2].displayIcon}">
+      <p>${rec.abilities[2].description}</p></li>
+    <li><h3>${rec.abilities[3].displayName}</h3>
+      <img class="abimg" src="${rec.abilities[3].displayIcon}">
+      <p>${rec.abilities[3].description}</p></li>
+    </ul>
+    </div>
+        </div>
+        `;
+      }
+      result.innerHTML = html;
+      }
+    
+    //fetching of data
+    async function getAgents(){
+      try{
+      const response = await fetch('https://valorant-api.com/v1/agents');
+      const agent = await response.json();
+      drawCard(agent.data)
+      console.log(agent.data);
+      }catch(e){
+        console.log(e);
+      }
+    }
+    getAgents();
+ 
+
+  </script>
+<script src="https://replit.com/public/js/replit-badge.js" theme="blue" defer></script> 
+</body>
+
+</html>
